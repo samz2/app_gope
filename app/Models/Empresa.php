@@ -10,4 +10,8 @@ class Empresa extends Model
     {
         return $this->hasMany(Cancha::class);
     }
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
 }

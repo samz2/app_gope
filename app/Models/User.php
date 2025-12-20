@@ -49,4 +49,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Reserva::class);
     }
+    // Un usuario puede tener muchos pagos
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
 }

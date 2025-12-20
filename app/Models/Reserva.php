@@ -20,4 +20,10 @@ class Reserva extends Model
     {
         return $this->hasOne(Pago::class);
     }
+
+    // Relación con payment_items (polimórfica)
+    public function paymentItem()
+    {
+        return $this->morphOne(PaymentItem::class, 'item');
+    }
 }
