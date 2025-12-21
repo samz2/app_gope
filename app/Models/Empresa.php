@@ -8,6 +8,11 @@ class Empresa extends Model
 {
     protected $fillable = [
         'nombre',
+        'documento',
+        'representante',
+        'estado',
+        'telefono',
+        'direccion',
     ];    
     public function canchas()
     {

@@ -16,6 +16,11 @@
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
+                    <th>Documento</th>
+                    <th>Representante</th>
+                    <th>Dirección</th>
+                    <th>Teléfono</th>
+                    <th>Estado</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -24,6 +29,12 @@
                     <tr>
                         <td>{{ $empresa->id }}</td>
                         <td>{{ $empresa->nombre }}</td>
+                        <td>{{ $empresa->documento }}</td>
+                        <td>{{ $empresa->representante }}</td>
+                        <td>{{ $empresa->direccion }}</td>
+                        <td>{{ $empresa->telefono }}</td>
+                        <td>{{ $empresa->estado }}</td>
+                        
                         <td>
                             <a href="{{ route('empresas.edit', $empresa) }}" class="btn btn-sm btn-warning">Editar</a>
 
@@ -39,7 +50,7 @@
                 @endforeach
             </tbody>
         </table>
-        <div class="mt-3">
+        <div class="pagination mt-3">
             {{ $empresas->links() }}
         </div>
     </div>

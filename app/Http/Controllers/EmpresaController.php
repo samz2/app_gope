@@ -42,7 +42,7 @@ class EmpresaController extends Controller
         ]);
 
         $empresa->update(
-            $request->only('nombre')
+            $request->except('_token')
         );
 
         return redirect()->route('empresas.index')

@@ -15,6 +15,28 @@
                value="{{ $empresa->nombre }}"
                required>
     </div>
+    <div class="mb-3">
+        <label class="form-label">Documento</label>
+        <input type="text" name="documento" class="form-control"
+            value="{{ $empresa->documento }}" maxlength="11" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Representante</label>
+        <input type="text" name="representante" class="form-control"
+            value="{{ $empresa->representante }}" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Telefono</label>
+        <input type="text" name="telefono" class="form-control"
+            value="{{ $empresa->telefono }}" maxlength="11" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Dirección</label>
+        <input type="text" name="direccion" class="form-control"
+            value="{{ $empresa->direccion }}" required>
+    </div>
 
     <button class="btn btn-primary">Actualizar</button>
     <a href="{{ route('empresas.index') }}" class="btn btn-secondary">Cancelar</a>

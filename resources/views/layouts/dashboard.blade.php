@@ -21,6 +21,11 @@
 </head>
 
 <body>
+	<style>
+		.pagination {
+			flex-direction: row !important;
+		}
+	</style>
 	<div class="wrapper">
 		<nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
