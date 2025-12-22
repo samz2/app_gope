@@ -13,6 +13,8 @@ class Empresa extends Model
         'estado',
         'telefono',
         'direccion',
+        'categoria',
+        'distrito_id',
     ];    
     public function canchas()
     {
@@ -22,4 +24,9 @@ class Empresa extends Model
     {
         return $this->hasMany(Payment::class);
     }
+    public function distrito()
+    {
+        return $this->belongsTo(Distrito::class);
+    }
+
 }

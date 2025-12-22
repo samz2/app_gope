@@ -14,7 +14,7 @@
 
 	<link rel="canonical" href="https://demo-basic.adminkit.io/" />
 
-	<title>AdminKit Demo - Bootstrap 5 Admin Template</title>
+	<title>GoPe Admin</title>
 
 	<link href="{{ asset('assets/css/app.css') }}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -30,7 +30,7 @@
 		<nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
 				<a class="sidebar-brand" href="index.html">
-          <span class="align-middle">AdminKit</span>
+          <span class="align-middle">GoPe Admin</span>
         </a>
 			<ul class="sidebar-nav">
 				<li class="sidebar-item active">
@@ -478,6 +478,52 @@
 			});
 		});
 	</script>
+	<script>
+		const regionSelect = document.getElementById('region');
+		const provinciaSelect = document.getElementById('provincia');
+		const distritoSelect = document.getElementById('distrito');
+
+		regionSelect.addEventListener('change', function () {
+			const regionId = this.value;
+
+			provinciaSelect.innerHTML = '<option value="">Cargando...</option>';
+			provinciaSelect.disabled = true;
+
+			distritoSelect.innerHTML = '<option value="">Seleccione</option>';
+			distritoSelect.disabled = true;
+
+			if (!regionId) return;
+
+			fetch(`/provincias/${regionId}`)
+				.then(res => res.json())
+				.then(data => {
+					provinciaSelect.innerHTML = '<option value="">Seleccione</option>';
+					data.forEach(p => {
+						provinciaSelect.innerHTML += `<option value="${p.id}">${p.nombre}</option>`;
+					});
+					provinciaSelect.disabled = false;
+				});
+		});
+
+		provinciaSelect.addEventListener('change', function () {
+			const provinciaId = this.value;
+
+			distritoSelect.innerHTML = '<option value="">Cargando...</option>';
+			distritoSelect.disabled = true;
+
+			if (!provinciaId) return;
+
+			fetch(`/distritos/${provinciaId}`)
+				.then(res => res.json())
+				.then(data => {
+					distritoSelect.innerHTML = '<option value="">Seleccione</option>';
+					data.forEach(d => {
+						distritoSelect.innerHTML += `<option value="${d.id}">${d.nombre}</option>`;
+					});
+					distritoSelect.disabled = false;
+				});
+		});
+		</script>
 
 </body>
 

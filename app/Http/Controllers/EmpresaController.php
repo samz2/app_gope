@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Empresa;
+use App\Models\Departamento;
 use Illuminate\Http\Request;
 
 class EmpresaController extends Controller
@@ -14,7 +15,9 @@ class EmpresaController extends Controller
 
     public function create()
     {
-        return view('empresas.create');
+        return view('empresas.create', [
+            'departamentos' => Departamento::get(),
+        ]);
     }
 
     public function store(Request $request)

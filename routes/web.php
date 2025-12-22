@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmpresaController;
+use App\Http\Controllers\UbicacionController;
 use App\Models\Empresa;
 
 Route::get('/', function () {
@@ -13,3 +14,6 @@ Route::get('/dashboard', function () {
     ]);
 });
 Route::resource('empresas', EmpresaController::class);
+
+Route::get('/provincias/{region}', [UbicacionController::class, 'provincias']);
+Route::get('/distritos/{provincia}', [UbicacionController::class, 'distritos']);

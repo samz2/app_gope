@@ -37,7 +37,20 @@
         <input type="text" name="direccion" class="form-control"
             value="{{ $empresa->direccion }}" required>
     </div>
-
+    <div class="mb-3">
+        <label class="form-label">Categoria</label>
+        <select name="categoria" class="form-control">
+            <option value="futbol" {{ $empresa->categoria == 'futbol' ? 'selected' : '' }}>
+                Futbol
+            </option>
+            <option value="voley" {{ $empresa->categoria == 'voley' ? 'selected' : '' }}>
+                Voley
+            </option>
+            <option value="polideportivo" {{ $empresa->categoria == 'polideportivo' ? 'selected' : '' }}>
+                Polideportivo
+            </option>
+        </select>
+    </div>
     <button class="btn btn-primary">Actualizar</button>
     <a href="{{ route('empresas.index') }}" class="btn btn-secondary">Cancelar</a>
 </form>

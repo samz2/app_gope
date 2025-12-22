@@ -15,6 +15,7 @@
             <thead>
                 <tr>
                     <th>ID</th>
+                    <th>Categoría</th>
                     <th>Nombre</th>
                     <th>Documento</th>
                     <th>Representante</th>
@@ -28,6 +29,7 @@
                 @foreach ($empresas as $empresa)
                     <tr>
                         <td>{{ $empresa->id }}</td>
+                        <td>{{ ucfirst($empresa->categoria) }}</td>
                         <td>{{ $empresa->nombre }}</td>
                         <td>{{ $empresa->documento }}</td>
                         <td>{{ $empresa->representante }}</td>
