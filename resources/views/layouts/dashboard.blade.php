@@ -7,7 +7,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
 	<meta name="author" content="AdminKit">
-	<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
+	<meta name="keywords"
+		content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
@@ -17,6 +18,7 @@
 	<title>GoPe Admin</title>
 
 	<link href="{{ asset('assets/css/app.css') }}" rel="stylesheet">
+	<link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
@@ -30,38 +32,45 @@
 		<nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
 				<a class="sidebar-brand" href="index.html">
-          <span class="align-middle">GoPe Admin</span>
-        </a>
-			<ul class="sidebar-nav">
-				<li class="sidebar-item active">
-					<a class="sidebar-link" href="{{ url('/dashboard') }}">
-						<i class="align-middle" data-feather="sliders"></i>
-						<span class="align-middle">Dashboard</span>
-					</a>
-				</li>
+					<span class="align-middle">GoPe Admin</span>
+				</a>
+				<ul class="sidebar-nav">
+					<li class="sidebar-item active">
+						<a class="sidebar-link" href="{{ url('/dashboard') }}">
+							<i class="align-middle" data-feather="sliders"></i>
+							<span class="align-middle">Dashboard</span>
+						</a>
+					</li>
 
-				<li class="sidebar-item">
-					<a class="sidebar-link" href="{{ route('empresas.index') }}">
-						<i class="align-middle" data-feather="briefcase"></i>
-						<span class="align-middle">Empresas</span>
-					</a>
-				</li>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="{{ route('empresas.index') }}">
+							<i class="align-middle" data-feather="briefcase"></i>
+							<span class="align-middle">Empresas</span>
+						</a>
+					</li>
 
-				<li class="sidebar-item">
-					<a class="sidebar-link" href="#">
-						<i class="align-middle" data-feather="calendar"></i>
-						<span class="align-middle">Reservas</span>
-					</a>
-				</li>
-			</ul>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="{{ route('clientes.index') }}">
+							<i class="align-middle" data-feather="users"></i>
+							<span class="align-middle">Clientes</span>
+						</a>
+					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="#">
+							<i class="align-middle" data-feather="calendar"></i>
+							<span class="align-middle">Reservas</span>
+						</a>
+					</li>
+				</ul>
 			</div>
 		</nav>
 
 		<div class="main">
 			<nav class="navbar navbar-expand navbar-light navbar-bg">
 				<a class="sidebar-toggle js-sidebar-toggle">
-          <i class="hamburger align-self-center"></i>
-        </a>
+					<i class="hamburger align-self-center"></i>
+				</a>
 
 				<div class="navbar-collapse collapse">
 					<ul class="navbar-nav navbar-align">
@@ -72,7 +81,8 @@
 									<span class="indicator">4</span>
 								</div>
 							</a>
-							<div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0" aria-labelledby="alertsDropdown">
+							<div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0"
+								aria-labelledby="alertsDropdown">
 								<div class="dropdown-menu-header">
 									4 New Notifications
 								</div>
@@ -84,7 +94,8 @@
 											</div>
 											<div class="col-10">
 												<div class="text-dark">Update completed</div>
-												<div class="text-muted small mt-1">Restart server 12 to complete the update.</div>
+												<div class="text-muted small mt-1">Restart server 12 to complete the
+													update.</div>
 												<div class="text-muted small mt-1">30m ago</div>
 											</div>
 										</div>
@@ -96,7 +107,8 @@
 											</div>
 											<div class="col-10">
 												<div class="text-dark">Lorem ipsum</div>
-												<div class="text-muted small mt-1">Aliquam ex eros, imperdiet vulputate hendrerit et.</div>
+												<div class="text-muted small mt-1">Aliquam ex eros, imperdiet vulputate
+													hendrerit et.</div>
 												<div class="text-muted small mt-1">2h ago</div>
 											</div>
 										</div>
@@ -119,7 +131,8 @@
 											</div>
 											<div class="col-10">
 												<div class="text-dark">New connection</div>
-												<div class="text-muted small mt-1">Christina accepted your request.</div>
+												<div class="text-muted small mt-1">Christina accepted your request.
+												</div>
 												<div class="text-muted small mt-1">14h ago</div>
 											</div>
 										</div>
@@ -131,12 +144,14 @@
 							</div>
 						</li>
 						<li class="nav-item dropdown">
-							<a class="nav-icon dropdown-toggle" href="#" id="messagesDropdown" data-bs-toggle="dropdown">
+							<a class="nav-icon dropdown-toggle" href="#" id="messagesDropdown"
+								data-bs-toggle="dropdown">
 								<div class="position-relative">
 									<i class="align-middle" data-feather="message-square"></i>
 								</div>
 							</a>
-							<div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0" aria-labelledby="messagesDropdown">
+							<div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0"
+								aria-labelledby="messagesDropdown">
 								<div class="dropdown-menu-header">
 									<div class="position-relative">
 										4 New Messages
@@ -146,11 +161,13 @@
 									<a href="#" class="list-group-item">
 										<div class="row g-0 align-items-center">
 											<div class="col-2">
-												<img src="img/avatars/avatar-5.jpg" class="avatar img-fluid rounded-circle" alt="Vanessa Tucker">
+												<img src="img/avatars/avatar-5.jpg"
+													class="avatar img-fluid rounded-circle" alt="Vanessa Tucker">
 											</div>
 											<div class="col-10 ps-2">
 												<div class="text-dark">Vanessa Tucker</div>
-												<div class="text-muted small mt-1">Nam pretium turpis et arcu. Duis arcu tortor.</div>
+												<div class="text-muted small mt-1">Nam pretium turpis et arcu. Duis arcu
+													tortor.</div>
 												<div class="text-muted small mt-1">15m ago</div>
 											</div>
 										</div>
@@ -158,11 +175,13 @@
 									<a href="#" class="list-group-item">
 										<div class="row g-0 align-items-center">
 											<div class="col-2">
-												<img src="img/avatars/avatar-2.jpg" class="avatar img-fluid rounded-circle" alt="William Harris">
+												<img src="img/avatars/avatar-2.jpg"
+													class="avatar img-fluid rounded-circle" alt="William Harris">
 											</div>
 											<div class="col-10 ps-2">
 												<div class="text-dark">William Harris</div>
-												<div class="text-muted small mt-1">Curabitur ligula sapien euismod vitae.</div>
+												<div class="text-muted small mt-1">Curabitur ligula sapien euismod
+													vitae.</div>
 												<div class="text-muted small mt-1">2h ago</div>
 											</div>
 										</div>
@@ -170,11 +189,13 @@
 									<a href="#" class="list-group-item">
 										<div class="row g-0 align-items-center">
 											<div class="col-2">
-												<img src="img/avatars/avatar-4.jpg" class="avatar img-fluid rounded-circle" alt="Christina Mason">
+												<img src="img/avatars/avatar-4.jpg"
+													class="avatar img-fluid rounded-circle" alt="Christina Mason">
 											</div>
 											<div class="col-10 ps-2">
 												<div class="text-dark">Christina Mason</div>
-												<div class="text-muted small mt-1">Pellentesque auctor neque nec urna.</div>
+												<div class="text-muted small mt-1">Pellentesque auctor neque nec urna.
+												</div>
 												<div class="text-muted small mt-1">4h ago</div>
 											</div>
 										</div>
@@ -182,11 +203,13 @@
 									<a href="#" class="list-group-item">
 										<div class="row g-0 align-items-center">
 											<div class="col-2">
-												<img src="img/avatars/avatar-3.jpg" class="avatar img-fluid rounded-circle" alt="Sharon Lessman">
+												<img src="img/avatars/avatar-3.jpg"
+													class="avatar img-fluid rounded-circle" alt="Sharon Lessman">
 											</div>
 											<div class="col-10 ps-2">
 												<div class="text-dark">Sharon Lessman</div>
-												<div class="text-muted small mt-1">Aenean tellus metus, bibendum sed, posuere ac, mattis non.</div>
+												<div class="text-muted small mt-1">Aenean tellus metus, bibendum sed,
+													posuere ac, mattis non.</div>
 												<div class="text-muted small mt-1">5h ago</div>
 											</div>
 										</div>
@@ -198,19 +221,26 @@
 							</div>
 						</li>
 						<li class="nav-item dropdown">
-							<a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
-                <i class="align-middle" data-feather="settings"></i>
-              </a>
+							<a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#"
+								data-bs-toggle="dropdown">
+								<i class="align-middle" data-feather="settings"></i>
+							</a>
 
-							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> <span class="text-dark">Charles Hall</span>
-              </a>
+							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
+								data-bs-toggle="dropdown">
+								<img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1"
+									alt="Charles Hall" /> <span class="text-dark">Charles Hall</span>
+							</a>
 							<div class="dropdown-menu dropdown-menu-end">
-								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
-								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="pie-chart"></i> Analytics</a>
+								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1"
+										data-feather="user"></i> Profile</a>
+								<a class="dropdown-item" href="#"><i class="align-middle me-1"
+										data-feather="pie-chart"></i> Analytics</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="index.html"><i class="align-middle me-1" data-feather="settings"></i> Settings & Privacy</a>
-								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Help Center</a>
+								<a class="dropdown-item" href="index.html"><i class="align-middle me-1"
+										data-feather="settings"></i> Settings & Privacy</a>
+								<a class="dropdown-item" href="#"><i class="align-middle me-1"
+										data-feather="help-circle"></i> Help Center</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="#">Log out</a>
 							</div>
@@ -230,25 +260,13 @@
 					<div class="row text-muted">
 						<div class="col-6 text-start">
 							<p class="mb-0">
-								<a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>AdminKit</strong></a> - <a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>Bootstrap Admin Template</strong></a>								&copy;
+								<a class="text-muted" href="https://adminkit.io/"
+									target="_blank"><strong>AdminKit</strong></a> - <a class="text-muted"
+									href="https://adminkit.io/" target="_blank"><strong>Bootstrap Admin
+										Template</strong></a> &copy;
 							</p>
 						</div>
-						<div class="col-6 text-end">
-							<ul class="list-inline">
-								<li class="list-inline-item">
-									<a class="text-muted" href="https://adminkit.io/" target="_blank">Support</a>
-								</li>
-								<li class="list-inline-item">
-									<a class="text-muted" href="https://adminkit.io/" target="_blank">Help Center</a>
-								</li>
-								<li class="list-inline-item">
-									<a class="text-muted" href="https://adminkit.io/" target="_blank">Privacy</a>
-								</li>
-								<li class="list-inline-item">
-									<a class="text-muted" href="https://adminkit.io/" target="_blank">Terms</a>
-								</li>
-							</ul>
-						</div>
+
 					</div>
 				</div>
 			</footer>
@@ -258,7 +276,7 @@
 	<script src="{{ asset('assets/js/app.js') }}"></script>
 
 	<script>
-		document.addEventListener("DOMContentLoaded", function() {
+		document.addEventListener("DOMContentLoaded", function () {
 			var ctx = document.getElementById("chartjs-dashboard-line").getContext("2d");
 			var gradient = ctx.createLinearGradient(0, 0, 0, 225);
 			gradient.addColorStop(0, "rgba(215, 227, 244, 1)");
@@ -328,7 +346,7 @@
 		});
 	</script>
 	<script>
-		document.addEventListener("DOMContentLoaded", function() {
+		document.addEventListener("DOMContentLoaded", function () {
 			// Pie chart
 			new Chart(document.getElementById("chartjs-dashboard-pie"), {
 				type: "pie",
@@ -356,7 +374,7 @@
 		});
 	</script>
 	<script>
-		document.addEventListener("DOMContentLoaded", function() {
+		document.addEventListener("DOMContentLoaded", function () {
 			// Bar chart
 			new Chart(document.getElementById("chartjs-dashboard-bar"), {
 				type: "bar",
@@ -400,47 +418,47 @@
 		});
 	</script>
 	<script>
-		document.addEventListener("DOMContentLoaded", function() {
+		document.addEventListener("DOMContentLoaded", function () {
 			var markers = [{
-					coords: [31.230391, 121.473701],
-					name: "Shanghai"
-				},
-				{
-					coords: [28.704060, 77.102493],
-					name: "Delhi"
-				},
-				{
-					coords: [6.524379, 3.379206],
-					name: "Lagos"
-				},
-				{
-					coords: [35.689487, 139.691711],
-					name: "Tokyo"
-				},
-				{
-					coords: [23.129110, 113.264381],
-					name: "Guangzhou"
-				},
-				{
-					coords: [40.7127837, -74.0059413],
-					name: "New York"
-				},
-				{
-					coords: [34.052235, -118.243683],
-					name: "Los Angeles"
-				},
-				{
-					coords: [41.878113, -87.629799],
-					name: "Chicago"
-				},
-				{
-					coords: [51.507351, -0.127758],
-					name: "London"
-				},
-				{
-					coords: [40.416775, -3.703790],
-					name: "Madrid "
-				}
+				coords: [31.230391, 121.473701],
+				name: "Shanghai"
+			},
+			{
+				coords: [28.704060, 77.102493],
+				name: "Delhi"
+			},
+			{
+				coords: [6.524379, 3.379206],
+				name: "Lagos"
+			},
+			{
+				coords: [35.689487, 139.691711],
+				name: "Tokyo"
+			},
+			{
+				coords: [23.129110, 113.264381],
+				name: "Guangzhou"
+			},
+			{
+				coords: [40.7127837, -74.0059413],
+				name: "New York"
+			},
+			{
+				coords: [34.052235, -118.243683],
+				name: "Los Angeles"
+			},
+			{
+				coords: [41.878113, -87.629799],
+				name: "Chicago"
+			},
+			{
+				coords: [51.507351, -0.127758],
+				name: "London"
+			},
+			{
+				coords: [40.416775, -3.703790],
+				name: "Madrid "
+			}
 			];
 			var map = new jsVectorMap({
 				map: "world",
@@ -467,7 +485,7 @@
 		});
 	</script>
 	<script>
-		document.addEventListener("DOMContentLoaded", function() {
+		document.addEventListener("DOMContentLoaded", function () {
 			var date = new Date(Date.now() - 5 * 24 * 60 * 60 * 1000);
 			var defaultDate = date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1) + "-" + date.getUTCDate();
 			document.getElementById("datetimepicker-dashboard").flatpickr({
@@ -523,8 +541,44 @@
 					distritoSelect.disabled = false;
 				});
 		});
-		</script>
+	</script>
 
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+	@if(session('success'))
+		<div class="toast-container position-fixed bottom-0 end-0 p-3">
+			<div id="successToast" class="toast align-items-center text-bg-success border-0" role="alert"
+				aria-live="assertive" aria-atomic="true">
+
+				<div class="d-flex">
+					<div class="toast-body">
+						<i class="bi bi-check-circle-fill me-2"></i>
+						{{ session('success') }}
+					</div>
+					<button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+						aria-label="Close"></button>
+				</div>
+			</div>
+		</div>
+	@endif
+	@if(session('success'))
+		<script>
+			document.addEventListener('DOMContentLoaded', function () {
+				let toastEl = document.getElementById('successToast');
+				let toast = new bootstrap.Toast(toastEl, {
+					delay: 3000
+				});
+				toast.show();
+			});
+		</script>
+	@endif
+
+	@stack('scripts')
 </body>
+
 
 </html>
