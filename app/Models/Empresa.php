@@ -15,7 +15,7 @@ class Empresa extends Model
         'direccion',
         'categoria',
         'distrito_id',
-    ];    
+    ];
     public function canchas()
     {
         return $this->hasMany(Cancha::class);
@@ -27,6 +27,11 @@ class Empresa extends Model
     public function distrito()
     {
         return $this->belongsTo(Distrito::class);
+    }
+
+    public function scopeActivos($query)
+    {
+        return $query->where('estado', 'activo');
     }
 
 }

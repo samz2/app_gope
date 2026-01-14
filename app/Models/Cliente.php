@@ -14,10 +14,23 @@ class Cliente extends Model
         'latitud',
         'longitud',
         'estado',
+        'distrito_id',
+
     ];
 
     public function getNombreCompletoAttribute()
     {
         return $this->nombres . ' ' . $this->apellidos;
     }
+
+    public function scopeActivos($query)
+    {
+        return $query->where('estado', 'activo');
+    }
+
+    public function distrito()
+    {
+        return $this->belongsTo(Distrito::class);
+    }
+
 }
