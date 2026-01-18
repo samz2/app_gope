@@ -33,7 +33,6 @@
 		<nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
 				<a class="sidebar-brand" href="index.html">
-<<<<<<< HEAD
           <span class="align-middle">GoPe Admin</span>
         </a>
 			<ul class="sidebar-nav">
@@ -58,7 +57,6 @@
 					</a>
 				</li>
 			</ul>
-=======
 					<span class="align-middle">GoPe Admin</span>
 				</a>
 				<ul class="sidebar-nav">
@@ -90,7 +88,6 @@
 						</a>
 					</li>
 				</ul>
->>>>>>> bc2d315077f55787498b2fdd4eb646c3a8a22b44
 			</div>
 		</nav>
 
@@ -189,12 +186,9 @@
 									<a href="#" class="list-group-item">
 										<div class="row g-0 align-items-center">
 											<div class="col-2">
-<<<<<<< HEAD
 												<img src={{ asset("img/avatars/avatar-5.jpg")}} class="avatar img-fluid rounded-circle" alt="Vanessa Tucker">
-=======
 												<img src="img/avatars/avatar-5.jpg"
 													class="avatar img-fluid rounded-circle" alt="Vanessa Tucker">
->>>>>>> bc2d315077f55787498b2fdd4eb646c3a8a22b44
 											</div>
 											<div class="col-10 ps-2">
 												<div class="text-dark">Vanessa Tucker</div>
@@ -207,12 +201,9 @@
 									<a href="#" class="list-group-item">
 										<div class="row g-0 align-items-center">
 											<div class="col-2">
-<<<<<<< HEAD
 												<img src="{{ asset('img/avatars/avatar-2.jpg')}}" class="avatar img-fluid rounded-circle" alt="William Harris">
-=======
 												<img src="img/avatars/avatar-2.jpg"
 													class="avatar img-fluid rounded-circle" alt="William Harris">
->>>>>>> bc2d315077f55787498b2fdd4eb646c3a8a22b44
 											</div>
 											<div class="col-10 ps-2">
 												<div class="text-dark">William Harris</div>
@@ -225,12 +216,9 @@
 									<a href="#" class="list-group-item">
 										<div class="row g-0 align-items-center">
 											<div class="col-2">
-<<<<<<< HEAD
 												<img src="{{ asset('img/avatars/avatar-4.jpg')}}" class="avatar img-fluid rounded-circle" alt="Christina Mason">
-=======
 												<img src="img/avatars/avatar-4.jpg"
 													class="avatar img-fluid rounded-circle" alt="Christina Mason">
->>>>>>> bc2d315077f55787498b2fdd4eb646c3a8a22b44
 											</div>
 											<div class="col-10 ps-2">
 												<div class="text-dark">Christina Mason</div>
@@ -243,12 +231,9 @@
 									<a href="#" class="list-group-item">
 										<div class="row g-0 align-items-center">
 											<div class="col-2">
-<<<<<<< HEAD
 												<img src="{{ asset('img/avatars/avatar-3.jpg')}}" class="avatar img-fluid rounded-circle" alt="Sharon Lessman">
-=======
 												<img src="img/avatars/avatar-3.jpg"
 													class="avatar img-fluid rounded-circle" alt="Sharon Lessman">
->>>>>>> bc2d315077f55787498b2fdd4eb646c3a8a22b44
 											</div>
 											<div class="col-10 ps-2">
 												<div class="text-dark">Sharon Lessman</div>
@@ -270,17 +255,14 @@
 								<i class="align-middle" data-feather="settings"></i>
 							</a>
 
-<<<<<<< HEAD
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
                 <img src="{{ asset('img/avatars/avatar.jpg')}}" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> <span class="text-dark">Charles Hall</span>
               </a>
-=======
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
 								data-bs-toggle="dropdown">
 								<img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1"
 									alt="Charles Hall" /> <span class="text-dark">Charles Hall</span>
 							</a>
->>>>>>> bc2d315077f55787498b2fdd4eb646c3a8a22b44
 							<div class="dropdown-menu dropdown-menu-end">
 								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1"
 										data-feather="user"></i> Profile</a>
@@ -324,9 +306,7 @@
 	</div>
 
 	<script src="{{ asset('assets/js/app.js') }}"></script>
-<<<<<<< HEAD
 	
-=======
 
 	<script>
 		document.addEventListener("DOMContentLoaded", function () {
@@ -549,7 +529,6 @@
 			});
 		});
 	</script>
->>>>>>> bc2d315077f55787498b2fdd4eb646c3a8a22b44
 	<script>
 		const regionSelect = document.getElementById('region');
 		const provinciaSelect = document.getElementById('provincia');
@@ -596,10 +575,8 @@
 				});
 		});
 	</script>
-<<<<<<< HEAD
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-=======
 
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 	<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
@@ -634,7 +611,6 @@
 			});
 		</script>
 	@endif
->>>>>>> bc2d315077f55787498b2fdd4eb646c3a8a22b44
 
 	@stack('scripts')
 </body>

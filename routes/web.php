@@ -22,6 +22,7 @@ Route::get('/dashboard', function () {
 
 // Módulo Empresas
 Route::resource('empresas', EmpresaController::class);
+Route::resource('clientes', ClienteController::class);
 Route::resource('canchas', CanchaController::class);
 Route::resource('canchas.tarifas', TarifaController::class);
 
