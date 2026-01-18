@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('canchas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('empresa_id')->constrained('empresas')->onDelete('cascade');
+            $table->foreignId('empresa_id')->constrained()->cascadeOnDelete();
             $table->string('nombre');
-            $table->string('tipo')->nullable(); // fútbol 5, 7, 11
-            $table->decimal('precio_hora', 8, 2);
+            $table->string('tipo')->nullable();
             $table->boolean('activa')->default(true);
             $table->timestamps();
         });

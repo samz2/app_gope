@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Distrito extends Model
 {
-    //
+    protected $fillable = ['provincia_id', 'nombre'];
+
+    public function provincia()
+    {
+        return $this->belongsTo(Provincia::class);
+    }
 }
