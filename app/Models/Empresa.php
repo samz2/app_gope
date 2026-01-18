@@ -17,7 +17,7 @@ class Empresa extends Model
         'latitud',
         'longitud',
         'distrito_id',
-    ];    
+    ];
     public function canchas()
     {
         return $this->hasMany(Cancha::class);
@@ -52,6 +52,11 @@ class Empresa extends Model
     public function getDistritoNombreAttribute()
     {
         return optional($this->distrito)->nombre;
+    }
+
+    public function scopeActivos($query)
+    {
+        return $query->where('estado', 'activo');
     }
 
 }

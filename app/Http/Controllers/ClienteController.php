@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use App\Models\Departamento;
+use App\Models\Provincia;
+use App\Models\Distrito;
 class ClienteController extends Controller
 {
     /**
@@ -39,7 +42,15 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        return view('clientes.create');
+        $departamentos = Departamento::orderBy('nombre')->get();
+        $provincias = collect(); // vacío al inicio
+        $distritos = collect();
+
+        return view('clientes.create', compact(
+            'departamentos',
+            'provincias',
+            'distritos'
+        ));
     }
 
     /**
@@ -55,28 +66,67 @@ class ClienteController extends Controller
             'latitud' => 'nullable|numeric',
             'longitud' => 'nullable|numeric',
             'estado' => 'required|in:activo,inactivo',
+            'distrito_id' => 'required|exists:distritos,id',
+
         ]);
 
-        Cliente::create($request->all());
+        $cliente = Cliente::create($request->only([
+            'nombres',
+            'apellidos',
+            'telefono',
+            'email',
+            'latitud',
+            'longitud',
+            'estado',
+            'distrito_id',
+        ]));
+
 
         return redirect()
             ->route('clientes.index')
-            ->with('success', 'Cliente creado correctamente');
+            ->with('modal_success', [
+                'title' => 'Cliente creado',
+                'message' => 'El cliente fue registrado correctamente.',
+                'redirect' => route('clientes.index'),
+            ]);
+
+
     }
 
     /**
      * Mostrar formulario de edición
      */
-    public function edit(Cliente $cliente)
+    public function edit($id)
     {
-        return view('clientes.edit', compact('cliente'));
+        $cliente = Cliente::where('id', $id)->firstOrFail();
+        $departamentos = Departamento::orderBy('nombre')->get();
+
+        $distrito = Distrito::with('provincia.departamento')
+            ->findOrFail($cliente->distrito_id);
+
+        $provincia = $distrito->provincia;
+        $departamento = $provincia->departamento;
+
+        $provincias = Provincia::where('departamento_id', $departamento->id)->get();
+        $distritos = Distrito::where('provincia_id', $provincia->id)->get();
+
+        return view('clientes.edit', compact(
+            'cliente',
+            'departamentos',
+            'provincias',
+            'distritos',
+            'departamento',
+            'provincia',
+            'distrito'
+        ));
     }
 
     /**
      * Actualizar cliente
      */
-    public function update(Request $request, Cliente $cliente)
+    public function update(Request $request, $id)
     {
+        $cliente = Cliente::where('id', $id)->firstOrFail();
         $request->validate([
             'nombres' => 'required|string|max:255',
             'apellidos' => 'required|string|max:255',
@@ -89,9 +139,14 @@ class ClienteController extends Controller
 
         $cliente->update($request->all());
 
+
         return redirect()
             ->route('clientes.index')
-            ->with('success', 'Cliente actualizado correctamente');
+            ->with('modal_success', [
+                'title' => 'Cliente actualizado',
+                'message' => 'Los datos del cliente se actualizaron correctamente.',
+                'redirect' => route('clientes.index'),
+            ]);
     }
 
     /**
@@ -101,9 +156,14 @@ class ClienteController extends Controller
     {
         $cliente->update(['estado' => 'inactivo']);
 
+
         return redirect()
             ->route('clientes.index')
-            ->with('success', 'Cliente eliminado correctamente');
+            ->with('modal_success', [
+                'title' => 'Cliente eliminado',
+                'message' => 'El cliente fue eliminado correctamente.',
+                'redirect' => route('clientes.index'),
+            ]);
     }
     public function buscarAjax(Request $request)
     {
