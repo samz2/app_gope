@@ -85,3 +85,14 @@ Route::middleware('auth')->group(function () {
 });
 
 
+/*
+|--------------------------------------------------------------------------
+| Rutas para EMPRESA
+|--------------------------------------------------------------------------
+*/
+Route::middleware(['auth'])->prefix('empresa')->name('empresa.')->group(function () {
+
+    Route::get('/dashboard', [EmpresaController::class, 'dashboard'])
+        ->name('dashboard');
+
+});

@@ -4,7 +4,7 @@
 
 @section('content')
 <br>
-    <h2 class="dashboard-title"align="center">RESUMEN GENERAL</h2>
+    <h2 class="dashboard-title"align="center">BIENVENIDO A TU SISTEMA</h2>
 <br>
     <div class="stats">
         <a href="{{ route('empresas.index') }}" class="card-link">

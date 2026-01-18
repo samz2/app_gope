@@ -477,7 +477,7 @@
 
             <!-- HEADER -->
             <header class="header">
-                    <h2 class="dashboard-title">Bienvenido/a, {{ auth()->user()->name }} 👋</h2>
+                    <h2 class="dashboard-title">Hola, {{ auth()->user()->name }} 👋</h2>
 
 
                 <div class="header-right">
