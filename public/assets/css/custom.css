@@ -1,0 +1,10 @@
+/* Forzar paginación horizontal */
+.pagination {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center;
+}
+
+.pagination .page-item {
+    display: inline-block !important;
+}

@@ -13,6 +13,17 @@
             </div>
         </div>
 
+        <a href="{{ route('clientes.index') }}" class="text-decoration-none text-dark">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Clientes</h5>
+                        <h1 class="mt-1 mb-3">{{ $clientes }}</h1>
+                    </div>
+                </div>
+            </div>
+        </a>
+
         <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
