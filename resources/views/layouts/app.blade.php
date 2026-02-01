@@ -99,19 +99,19 @@
         135deg,
         #1f2937,
         #111827
-    );
-    color: #ffffff;
+        );
+        color: #ffffff;
 
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
-        }   
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+            }   
 
-        .sidebar a:hover {
-            background: linear-gradient(
-        135deg,
-        #1f2937,
-        #111827
-    );
+            .sidebar a:hover {
+                background: linear-gradient(
+            135deg,
+            #1f2937,
+            #111827
+        );
             color: #ffffff;
 
             transform: translateY(-2px);
@@ -406,28 +406,28 @@
             box-shadow: 0 6px 18px rgba(0,0,0,0.06);
         }
 
-    .stat-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    }
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
 
-    /* Texto */
-    .stat-content span {
-        font-size: 14px;
-        opacity: 0.9;
-    }
+        /* Texto */
+        .stat-content span {
+            font-size: 14px;
+            opacity: 0.9;
+        }
 
-    .stat-content h2 {
-        margin: 6px 0 0;
-        font-size: 32px;
-        font-weight: 700;
-    }
+        .stat-content h2 {
+            margin: 6px 0 0;
+            font-size: 32px;
+            font-weight: 700;
+        }
 
-    /* Ícono a la derecha */
-    .stat-icon {
-       font-size: 40px;
-    opacity: 0.35;
-    }
+        /* Ícono a la derecha */
+        .stat-icon {
+        font-size: 40px;
+        opacity: 0.35;
+        }
 
     </style>
 </head>
@@ -482,7 +482,8 @@
 
             <!-- HEADER -->
             <header class="header">
-                    <h2 class="dashboard-title">Hola, {{ auth()->user()->name }} 👋</h2>
+                    {{-- <h2 class="dashboard-title">Hola, {{ auth()->user()->name }} 👋</h2> --}}
+                    <h2 class="dashboard-title">Hola, 👋</h2>
 
 
                 <div class="header-right">
