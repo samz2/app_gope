@@ -539,6 +539,66 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google_maps.key') }}&libraries=places&callback=initMap"
+        async
+        defer>
+    </script>
+    <script>
+        let map, marker, autocomplete;
+
+        function initMap() {
+            const defaultLatLng = {
+                lat: parseFloat(document.getElementById('latitud').value) || -8.3634803,
+                lng: parseFloat(document.getElementById('longitud').value) || -74.5814769
+            };
+
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: defaultLatLng,
+                zoom: 14,
+            });
+
+            marker = new google.maps.Marker({
+                position: defaultLatLng,
+                map: map,
+                draggable: true
+            });
+
+            // Autocomplete de dirección
+            autocomplete = new google.maps.places.Autocomplete(
+                document.getElementById('direccion')
+            );
+
+            autocomplete.addListener('place_changed', function () {
+                const place = autocomplete.getPlace();
+                if (!place.geometry) return;
+
+                const location = place.geometry.location;
+                map.setCenter(location);
+                marker.setPosition(location);
+
+                setLatLng(location.lat(), location.lng());
+            });
+
+            // Click en el mapa
+            map.addListener('click', function (event) {
+                marker.setPosition(event.latLng);
+                setLatLng(event.latLng.lat(), event.latLng.lng());
+            });
+
+            // Arrastrar marcador
+            marker.addListener('dragend', function (event) {
+                setLatLng(event.latLng.lat(), event.latLng.lng());
+            });
+        }
+
+        function setLatLng(lat, lng) {
+            document.getElementById('latitud').value = lat;
+            document.getElementById('longitud').value = lng;
+        }
+
+        window.onload = initMap;
+    </script>
 
     @stack('scripts')
 </body>

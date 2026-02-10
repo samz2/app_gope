@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ExplorarController;
 
 
 //Dashboard
@@ -93,3 +94,12 @@ Route::middleware(['auth'])->prefix('empresa')->name('empresa.')->group(function
         ->name('dashboard');
 
 });
+
+/*
+|--------------------------------------------------------------------------
+| Rutas para vista de cliente
+|--------------------------------------------------------------------------
+*/
+Route::get('/explorar', [ExplorarController::class, 'index'])
+    ->name('explorar.index');
+Route::get('/explorar/canchas-cercanas', [ExplorarController::class, 'canchasCercanas']);    

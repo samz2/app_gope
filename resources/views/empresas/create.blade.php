@@ -25,6 +25,7 @@
     <div class="mb-3">
         <label class="form-label">Dirección</label>
         <input type="text" name="direccion" class="form-control" required>
+        <div id="map" style="height: 400px; width: 100%;"></div>
     </div>
     <div class="mb-3">
         <label class="form-label">Categoria</label>
@@ -61,6 +62,11 @@
             <option value="">Seleccione</option>
         </select>
     </div>
+    <input type="hidden" id="latitud" name="latitud"
+       value="{{ old('latitud', $empresa->latitud ?? '') }}">
+
+    <input type="hidden" id="longitud" name="longitud"
+       value="{{ old('longitud', $empresa->longitud ?? '') }}">
     <button class="btn btn-success">Guardar</button>
     <a href="{{ route('empresas.index') }}" class="btn btn-secondary">Volver</a>
 </form>

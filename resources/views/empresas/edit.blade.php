@@ -34,18 +34,9 @@
 
     <div class="mb-3">
         <label class="form-label">Dirección</label>
-        <input type="text" name="direccion" class="form-control"
+        <input type="text" id="direccion" name="direccion" class="form-control"
             value="{{ $empresa->direccion }}" required>
-    </div>
-    <div class="mb-3">
-        <label class="form-label">Latitud</label>
-        <input type="text" name="latitud" class="form-control"
-            value="{{ $empresa->latitud }}">
-    </div>
-    <div class="mb-3">
-        <label class="form-label">Longitud</label>
-        <input type="text" name="longitud" class="form-control"
-            value="{{ $empresa->longitud }}">
+        <div id="map" style="height: 400px; width: 100%;"></div>
     </div>
     <div class="mb-3">
         <label class="form-label">Categoria</label>
@@ -97,6 +88,11 @@
             @endforeach
         </select>
     </div>
+    <input type="hidden" id="latitud" name="latitud"
+       value="{{ old('latitud', $empresa->latitud ?? '') }}">
+
+    <input type="hidden" id="longitud" name="longitud"
+       value="{{ old('longitud', $empresa->longitud ?? '') }}">
     <button class="btn btn-primary">Actualizar</button>
     <a href="{{ route('empresas.index') }}" class="btn btn-secondary">Cancelar</a>
 </form>
