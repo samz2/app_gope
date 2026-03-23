@@ -16,22 +16,20 @@
         <h1 style="font-size:22px;">Nuevo Usuario</h1>
     </div>
 
-    <div class="card shadow-sm">
-        <div class="card-body">
-            <form action="{{ route('admin.usuarios.store') }}" method="POST">
-                @csrf
+    <form action="{{ route('admin.usuarios.store') }}" method="POST">
+        @csrf
 
-                @include('admin.usuarios._form')
+        @include('admin.usuarios._form')
 
-                <div class="d-flex justify-content-end gap-2 mt-3">
-                    <a href="{{ route('admin.usuarios.index') }}" class="btn btn-outline-danger btn-nuevo btn-sm">
-                        Cancelar
-                    </a>
-                    <button class="btn btn-success btn-sm btn-nuevo">
-                        Guardar Usuario
-                    </button>
-                </div>
-            </form>
+        <div class="d-flex justify-content-end gap-2 mt-3">
+
+            <button class="btn btn-success btn-sm btn-nuevo">
+                Guardar
+            </button>
+            <a href="{{ route('admin.usuarios.index') }}" class="btn btn-primary btn-nuevo btn-sm">
+                Volver
+            </a>
         </div>
-    </div>
+    </form>
+
 @endsection

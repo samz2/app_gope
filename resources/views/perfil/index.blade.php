@@ -6,9 +6,10 @@
 @section('title', 'Mi Perfil')
 
 @section('content')
+
+ <h5 class="mb-3">Mi Perfil</h5>
 <div class="card shadow-sm">
     <div class="card-body">
-        <h5 class="mb-3">Mi perfil</h5>
 
 <form method="POST" action="{{ route('perfil.update') }}">
     @csrf
@@ -26,12 +27,12 @@
     </div>
 
     <div class="mb-3">
-        <label class="form-label">Email</label>
+        <label class="form-label">Usuario</label>
         <input
-            type="email"
-            name="email"
+            type="text"
+            name="usuario"
             class="form-control"
-            value="{{ old('email', $user->email) }}"
+            value="{{ old('usuario', $user->usuario) }}"
             {{ $locked ? 'disabled' : '' }}
         >
     </div>

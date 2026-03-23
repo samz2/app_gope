@@ -1,69 +1,118 @@
 @extends('layouts.app')
 
-@section('content')
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h1 class="h3">Empresas</h1>
+@section('title', 'Empresas')
 
-        <a href="{{ route('empresas.create') }}" class="btn btn-primary">
+@section('content')
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 style="font-size:22px; margin-bottom:12px;">Empresas</h1>
+
+        <a href="{{ route('empresas.create') }}" class="btn btn-outline-success btn-sm btn-nuevo">
             + Nueva Empresa
         </a>
     </div>
 
-    <div class="card">
-        <div class="card-body">
-            <form method="GET" action="{{ route('empresas.index') }}" class="mb-3">
-                <div class="row g-2">
-                    <div class="col-md-4">
-                        <input type="text" name="search" class="form-control" placeholder="Buscar empresa..."
-                            value="{{ request('search') }}">
-                    </div>
+    <div class="card shadow-sm">
+        <div class="card-body p-3">
 
-                    <div class="col-md-2">
-                        <button class="btn btn-primary w-100">
-                            Buscar
-                        </button>
-                    </div>
+            {{-- Buscador --}}
+            <div class="row g-2 mb-3">
+                <div class="col-md-4">
+                    <input type="text" id="buscar" class="form-control form-control-sm"
+                        placeholder="Buscar por nombre de empresa, documento o representante">
                 </div>
-            </form>
-            <div class="table-responsive">
-                <table class="table table-striped table-bordered table-sm">
-                    <thead>
+            </div>
+
+            {{-- Tabla --}}
+            <table id="empresas" class="table table-striped table-sm align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Empresa</th>
+                        <th>Documento</th>
+                        <th>Representante</th>
+                        <th>Teléfono</th>
+                        <th>Estado</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach ($empresas as $empresa)
                         <tr>
-                            <th>ID</th>
-                            <th>Categoría</th>
-                            <th>Nombre</th>
-                            <th>Documento</th>
-                            <th>Representante</th>
-                            <th>Dirección</th>
-                            <th>Teléfono</th>
-                            {{-- <th>Latitud</th>
-                            <th>Longitud</th> --}}
-                            <th>Estado</th>
-                            <th>Departamento</th>
-                            <th>Provincia</th>
-                            <th>Distrito</th>
-                            <th>Acciones</th>
+                            <td>{{ $empresa->nombre }}</td>
+                            <td>{{ $empresa->documento }}</td>
+                            <td>{{ $empresa->representante }}</td>
+                            <td>{{ $empresa->telefono }}</td>
+                            <td>
+                                <span class="badge {{ $empresa->estado ? 'bg-success' : 'bg-secondary' }}">
+                                    {{ $empresa->estado ? 'Activo' : 'Inactiva' }}
+                                </span>
+                            </td>
+                            <td class="text-center">
+
+                                {{-- Editar --}}
+                                <a href="{{ route('empresas.edit', $empresa) }}" class="btn btn-sm btn-outline-warning">
+                                    ✏️
+                                </a>
+
+                                {{-- Eliminar --}}
+                                <form method="POST" action="{{ route('empresas.destroy', $empresa) }}"
+                                    class="d-inline delete-form">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button type="button" class="btn btn-sm btn-outline-danger btn-delete"
+                                        data-bs-toggle="modal" data-bs-target="#deleteEmpresaModal">
+                                        🗑️
+                                    </button>
+                                </form>
+
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody id="tabla-empresas">
-                        @include('empresas.partials.table')
-                    </tbody>
-                </table>
-            </div>
-            <div class="d-flex justify-content-center mt-3">
-                {{ $empresas->links() }}
-            </div>
+                    @endforeach
+                </tbody>
+            </table>
+
         </div>
     </div>
+
+@endsection
+
+@push('scripts')
     <script>
-        document.querySelector('input[name="search"]').addEventListener('keyup', function () {
-            fetch(`?search=${this.value}`, {
-                headers: { 'X-Requested-With': 'XMLHttpRequest' }
-            })
-                .then(res => res.text())
-                .then(html => {
-                    document.querySelector('#tabla-empresas').innerHTML = html;
-                });
+        $(document).ready(function () {
+            let table = $('#empresas').DataTable({
+                pageLength: 5,
+                dom: 'rtip',
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json'
+                }
+            });
+
+            $('#buscar').on('keyup', function () {
+                table.search(this.value).draw();
+            });
         });
     </script>
-@endsection
+    <script>
+        let deleteForm = null;
+
+        // 🔥 Delegación de eventos (compatible con DataTables)
+        document.addEventListener('click', function (e) {
+
+            // Click en botón eliminar
+            if (e.target.closest('.btn-delete')) {
+                deleteForm = e.target.closest('form');
+            }
+
+            // Click en confirmar del modal
+            if (e.target.id === 'confirmDeleteBtn') {
+                if (deleteForm) {
+                    deleteForm.submit();
+                }
+            }
+        });
+    </script>
+@endpush
+
+<x-modal-confirm id="deleteEmpresaModal" title="Eliminar empresa" message="¿Desea eliminar la empresa?" />

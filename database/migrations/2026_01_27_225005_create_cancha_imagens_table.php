@@ -10,12 +10,13 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('cancha_imagens', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique(); // admin, empresa
+            $table->foreignId('cancha_id')->constrained()->cascadeOnDelete();
+            $table->string('ruta');
+            $table->boolean('principal')->default(false);
             $table->timestamps();
         });
-
     }
 
     /**
@@ -23,6 +24,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('cancha_imagens');
     }
 };

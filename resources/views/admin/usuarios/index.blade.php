@@ -18,7 +18,7 @@
             <div class="row g-2 mb-3">
                 <div class="col-md-4">
                     <input type="text" id="buscar" class="form-control form-control-sm"
-                        placeholder="Buscar por nombre, email o rol">
+                        placeholder="Buscar por nombre, usuario o rol">
                 </div>
             </div>
 
@@ -26,7 +26,7 @@
                 <thead class="table-light">
                     <tr>
                         <th>Nombre</th>
-                        <th>Email</th>
+                        <th>Usuario</th>
                         <th>Rol</th>
                         <th class="text-center">Acciones</th>
                     </tr>
@@ -36,23 +36,20 @@
                     @foreach ($users as $user)
                         <tr>
                             <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
+                            <td>{{ $user->usuario }}</td>
                             <td>{{ $user->role->nombre ?? '—' }}</td>
                             <td class="text-center">
                                 <a href="{{ route('admin.usuarios.edit', $user) }}" class="btn btn-sm btn-outline-warning">
                                     ✏️
                                 </a>
 
-                                <form method="POST"
-                                    action="{{ route('admin.usuarios.destroy', $user) }}"
+                                <form method="POST" action="{{ route('admin.usuarios.destroy', $user) }}"
                                     class="d-inline delete-form">
                                     @csrf
                                     @method('DELETE')
 
-                                    <button type="button"
-                                        class="btn btn-sm btn-outline-danger btn-delete"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#deleteUserModal">
+                                    <button type="button" class="btn btn-sm btn-outline-danger btn-delete"
+                                        data-bs-toggle="modal" data-bs-target="#deleteUserModal">
                                         🗑️
                                     </button>
                                 </form>

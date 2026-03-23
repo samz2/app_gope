@@ -6,24 +6,48 @@ use Illuminate\Database\Eloquent\Model;
 
 class Reserva extends Model
 {
+    protected $fillable = [
+        'empresa_id',
+        'cancha_id',
+        'cliente_id',
+        'fecha',
+        'hora_inicio',
+        'hora_fin',
+        'precio',
+        'estado',
+        // otros campos...
+        'pagado',
+        'monto_pagado',
+        'tipo_pago',
+        'codigo_promocion',
+    ];
+
+    public function empresa()
+    {
+        return $this->belongsTo(Empresa::class);
+    }
+
     public function cancha()
     {
         return $this->belongsTo(Cancha::class);
     }
 
-    public function user()
+    public function cliente()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Cliente::class);
     }
 
-    public function pago()
+    protected $casts = [
+        'pagado' => 'boolean',
+        'fecha_pago' => 'datetime',
+    ];
+
+    public function cobro()
     {
-        return $this->hasOne(Pago::class);
+        return $this->hasOne(Cobro::class);
     }
 
-    // Relación con payment_items (polimórfica)
-    public function paymentItem()
-    {
-        return $this->morphOne(PaymentItem::class, 'item');
-    }
+
+
 }
+

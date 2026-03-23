@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -14,25 +13,21 @@ return new class extends Migration
         Schema::create('reservas', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('cancha_id')
-                ->constrained('canchas')
-                ->onDelete('cascade');
-
-            $table->foreignId('user_id')
-                ->constrained('users')
-                ->onDelete('cascade');
+            $table->foreignId('empresa_id')->constrained('empresas')->cascadeOnDelete();
+            $table->foreignId('cancha_id')->constrained('canchas')->cascadeOnDelete();
+            $table->foreignId('cliente_id')->constrained('clientes')->cascadeOnDelete();
 
             $table->date('fecha');
             $table->time('hora_inicio');
             $table->time('hora_fin');
 
-            $table->decimal('precio_total', 8, 2);
+            $table->decimal('precio', 8, 2);
 
-            $table->enum('estado', ['pendiente', 'confirmada', 'cancelada'])
-                ->default('pendiente');
+            $table->enum('estado', ['pendiente', 'confirmada', 'cancelada'])->default('pendiente');
 
             $table->timestamps();
         });
+
     }
 
     /**

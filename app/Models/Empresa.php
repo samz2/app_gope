@@ -34,9 +34,9 @@ class Empresa extends Model
     {
         return $query->where(function ($q) use ($search) {
             $q->where('nombre', 'like', "%$search%")
-            ->orWhere('documento', 'like', "%$search%")
-            ->orWhere('representante', 'like', "%$search%")
-            ->orWhere('telefono', 'like', "%$search%");
+                ->orWhere('documento', 'like', "%$search%")
+                ->orWhere('representante', 'like', "%$search%")
+                ->orWhere('telefono', 'like', "%$search%");
         });
     }
     public function getDepartamentoNombreAttribute()
@@ -57,6 +57,15 @@ class Empresa extends Model
     public function scopeActivos($query)
     {
         return $query->where('estado', 'activo');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'email', 'email');
+    }
+    public function reservas()
+    {
+        return $this->hasMany(Reserva::class);
     }
 
 }

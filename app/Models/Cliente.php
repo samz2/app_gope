@@ -32,5 +32,9 @@ class Cliente extends Model
     {
         return $this->belongsTo(Distrito::class);
     }
+    public function reservas()
+    {
+        return $this->hasMany(Reserva::class);
+    }
 
 }

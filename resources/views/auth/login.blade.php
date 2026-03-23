@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Login | GoPe</title>
@@ -24,7 +25,7 @@
             width: 380px;
             padding: 35px;
             border-radius: 14px;
-            box-shadow: 0 25px 60px rgba(0,0,0,.6);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, .6);
             color: #e5e7eb;
         }
 
@@ -94,6 +95,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <form method="POST" action="{{ route('login.post') }}" class="login-card">
@@ -102,8 +104,10 @@
         <h1>GoPe</h1>
         <p>Sistema de gestión</p>
 
-        <label for="email">Correo electrónico</label>
-        <input id="email" type="email" name="email" placeholder="correo@ejemplo.com" required>
+        <div class="mb-3">
+            <label class="form-label">Usuario</label>
+            <input type="text" name="usuario" class="form-control" required>
+        </div>
 
         <label for="password">Contraseña</label>
         <input id="password" type="password" name="password" placeholder="••••••••" required>
@@ -120,4 +124,5 @@
     </form>
 
 </body>
+
 </html>

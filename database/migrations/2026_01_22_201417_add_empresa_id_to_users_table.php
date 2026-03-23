@@ -11,21 +11,20 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->foreignId('role_id')
-                ->nullable()
-                ->constrained('roles')
-                ->after('id');
-        });
+            $table->unsignedBigInteger('empresa_id')->nullable()->after('role_id');
 
+            $table->foreign('empresa_id')
+                ->references('id')
+                ->on('empresas')
+                ->onDelete('set null');
+        });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->dropForeign(['empresa_id']);
+            $table->dropColumn('empresa_id');
         });
     }
 };

@@ -6,6 +6,7 @@ use App\Models\Empresa;
 use App\Models\Cliente;
 use App\Models\User;
 use App\Models\Cancha;
+use App\Models\Cobro;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
@@ -35,13 +36,22 @@ class DashboardController extends Controller
             ->orderBy('mes')
             ->get();
 
+        // 🔥 NUEVO: cobros agrupados por tipo de pago
+        $cobrosPorMetodo = Cobro::select(
+            'metodo_pago',
+            DB::raw('SUM(monto) as total')
+        )
+            ->where('estado', 'pagado')
+            ->groupBy('metodo_pago')
+            ->get();
+
         return view('dashboard.index', compact(
             'empresas',
             'clientes',
             'usuarios',
             'canchas',
             'empresasPorMes',
-            'clientesPorMes'
+            'clientesPorMes',
         ));
     }
 }

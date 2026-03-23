@@ -12,10 +12,6 @@ class EmpresaController extends Controller
     {
         $query = Empresa::with('distrito.provincia.departamento');
 
-        // if ($request->filled('search')) {
-        //     $query->search($request->search);
-        // }
-        
         $empresas = $query->paginate(10)->withQueryString();
         if ($request->ajax()) {
             return view('empresas.partials.table', compact('empresas'))->render();
@@ -46,9 +42,9 @@ class EmpresaController extends Controller
     }
     public function edit(Empresa $empresa)
     {
-        $distrito  = $empresa->distrito;
+        $distrito = $empresa->distrito;
         $provincia = optional($distrito)->provincia;
-        $region    = optional($provincia)->departamento;
+        $region = optional($provincia)->departamento;
 
         return view('empresas.edit', [
             'empresa' => $empresa,
@@ -77,7 +73,7 @@ class EmpresaController extends Controller
         );
 
         return redirect()->route('empresas.index')
-                        ->with('success', 'Empresa actualizada');
+            ->with('success', 'Empresa actualizada');
     }
 
     public function destroy(Empresa $empresa)

@@ -1,40 +1,65 @@
-@extends('layouts.dashboard')
+@extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h4>Nueva tarifa – {{ $cancha->nombre }}</h4>
+    <div class="container">
+        <h2>Crear Tarifa</h2>
 
-    <form method="POST"
-          action="{{ route('canchas.tarifas.store', $cancha) }}">
-        @csrf
+        <form action="{{ route('canchas.tarifas.store', $cancha) }}" method="POST">
+            @csrf
 
-        <div class="mb-3">
-            <label>Día de la semana</label>
-            <select name="dia_semana" class="form-control">
-                @foreach(['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'] as $i => $dia)
-                    <option value="{{ $i }}">{{ $dia }}</option>
-                @endforeach
-            </select>
-        </div>
+            {{-- Cancha --}}
+            <div class="mb-3">
+                <label class="form-label">Cancha</label>
+                <input type="text" class="form-control" value="{{ $cancha->nombre }}" disabled>
+            </div>
 
-        <div class="mb-3">
-            <label>Hora inicio</label>
-            <input type="time" name="hora_inicio" class="form-control">
-        </div>
+            {{-- Días --}}
+            <div class="mb-3">
+                <label class="form-label">Días de la semana</label>
+                <div class="d-flex flex-wrap gap-3">
 
-        <div class="mb-3">
-            <label>Hora fin</label>
-            <input type="time" name="hora_fin" class="form-control">
-        </div>
+                    @foreach(['0' => 'Dom', '1' => 'Lun', '2' => 'Mar', '3' => 'Mié', '4' => 'Jue', '5' => 'Vie', '6' => 'Sáb'] as $num => $dia)
+                        <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input me-1" name="dia_semana[]" value="{{ $num }}">
+                            {{ $dia }}
+                        </label>
+                    @endforeach
 
-        <div class="mb-3">
-            <label>Precio</label>
-            <input type="number" step="0.01" name="precio" class="form-control">
-        </div>
+                </div>
+            </div>
 
-        <button class="btn btn-primary">Guardar</button>
-        <a href="{{ route('canchas.tarifas.index', $cancha) }}"
-           class="btn btn-secondary">Cancelar</a>
-    </form>
-</div>
+            {{-- Hora inicio --}}
+            <div class="mb-3">
+                <label class="form-label">Hora inicio</label>
+                <input type="time" name="hora_inicio" class="form-control" required>
+            </div>
+
+            {{-- Hora fin --}}
+            <div class="mb-3">
+                <label class="form-label">Hora fin</label>
+                <input type="time" name="hora_fin" class="form-control" required>
+            </div>
+
+            {{-- Precio --}}
+            <div class="mb-3">
+                <label class="form-label">Precio</label>
+                <input type="number" name="precio" class="form-control" step="0.01" required>
+            </div>
+
+            {{-- Errores --}}
+            @if ($errors->any())
+                <div class="alert alert-danger mt-3">
+                    <ul class="mb-0">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <button type="submit" class="btn btn-primary mt-3">
+                Guardar Tarifa
+            </button>
+        </form>
+    </div>
 @endsection

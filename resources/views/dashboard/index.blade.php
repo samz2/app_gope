@@ -3,9 +3,9 @@
 @section('title', 'Dashboard')
 
 @section('content')
-<br>
-    <h2 class="dashboard-title"align="center">BIENVENIDO A TU SISTEMA</h2>
-<br>
+    <br>
+    <h2 class="dashboard-title" align="center">BIENVENIDO A TU SISTEMA</h2>
+    <br>
     <div class="stats">
         <a href="{{ route('empresas.index') }}" class="card-link">
             <div class="stat-card green">
@@ -41,141 +41,160 @@
                     👤
                 </div>
             </div>
-            </a>
+        </a>
 
-                    <a href="{{ route('canchas.index') }}" class="card-link">
+        <a href="{{ route('canchas.index') }}" class="card-link">
             <div class="stat-card purple">
                 <div class="stat-content">
                     <span>Canchas</span>
                     <h2>{{ $canchas }}</h2>
                 </div>
                 <div class="stat-icon">
-                    🏃
+                    🏆
                 </div>
             </div>
-            </a>
+        </a>
     </div>
 
-<div class="charts">
-    {{-- Gráfico de barras --}}
-    <div class="chart-card">
-        <div class="chart-header">
-            <h3>Resultados</h3>
+    <div class="charts">
+        {{-- Gráfico de barras --}}
+        <div class="chart-card">
+            <div class="chart-header">
+                <h3>Resultados</h3>
+            </div>
+
+            <div class="chart-body">
+                <canvas id="barChart"></canvas>
+            </div>
         </div>
 
-        <div class="chart-body">
-            <canvas id="barChart"></canvas>
+        {{-- Gráfico circular --}}
+        <div class="chart-card">
+            <div class="chart-header">
+                <h3>Comisiones</h3>
+            </div>
+
+            <div class="chart-body">
+                <canvas id="pieChart"></canvas>
+            </div>
         </div>
     </div>
-
-    {{-- Gráfico circular --}}
-    <div class="chart-card">
-        <div class="chart-header">
-            <h3>Comisiones</h3>
-        </div>
-
-        <div class="chart-body">
-            <canvas id="pieChart"></canvas>
-        </div>
-    </div>
-</div>
 @endsection
 
 @push('scripts')
-<script>
-    const ctx = document.getElementById('barChart').getContext('2d');
-
-    const gradient = ctx.createLinearGradient(0, 0, 0, 250);
-    gradient.addColorStop(0, 'rgba(99, 102, 241, 0.35)'); // violeta suave
-    gradient.addColorStop(1, 'rgba(99, 102, 241, 0.05)');
-
-    new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ['Empresas', 'Clientes', 'Usuarios'],
-            datasets: [{
-                label: 'Totales',
-                data: [
-                    {{ $empresas }},
-                    {{ $clientes }},
-                    {{ $usuarios }}
-                ],
-                borderColor: '#6366f1',   // línea principal
-                backgroundColor: gradient,
-                fill: true,               // 👈 área
-                tension: 0.45,            // 👈 curva suave
-                pointRadius: 5,
-                pointHoverRadius: 7,
-                pointBackgroundColor: '#6366f1',
-                pointBorderColor: '#fff',
-                pointBorderWidth: 2
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    display: false
-                },
-                tooltip: {
-                    backgroundColor: '#111827',
-                    titleColor: '#fff',
-                    bodyColor: '#e5e7eb',
-                    padding: 12,
-                    cornerRadius: 8
-                }
-            },
-            scales: {
-                x: {
-                    grid: {
-                        display: false
-                    }
-                },
-                y: {
-                    beginAtZero: true,
-                    grid: {
-                        color: 'rgba(0,0,0,0.05)'
-                    },
-                    ticks: {
-                        precision: 0
-                    }
-                }
-            }
-        }
-    });
-</script>
-
-
-
     <script>
-        /* ====== GRÁFICO CIRCULAR – COMISIONES ====== */
-        const pieCtx = document.getElementById('pieChart');
+        const ctx = document.getElementById('barChart').getContext('2d');
 
-        new Chart(pieCtx, {
-            type: 'pie',
+        const gradient = ctx.createLinearGradient(0, 0, 0, 250);
+        gradient.addColorStop(0, 'rgba(99, 102, 241, 0.35)'); // violeta suave
+        gradient.addColorStop(1, 'rgba(99, 102, 241, 0.05)');
+
+        new Chart(ctx, {
+            type: 'line',
             data: {
-                labels: ['Transferencias', 'Pagos', 'Suscripciones'],
+                labels: ['Empresas', 'Clientes', 'Usuarios'],
                 datasets: [{
-                    data: [1200, 800, 500], // 🔒 valores en duro por ahora
-                    backgroundColor: [
-                        '#22c55e', // verde
-                        '#3b82f6', // azul
-                        '#a855f7'  // morado
+                    label: 'Totales',
+                    data: [
+                                                        {{ $empresas }},
+                                                        {{ $clientes }},
+                        {{ $usuarios }}
                     ],
-                    borderWidth: 0
+                    borderColor: '#6366f1',   // línea principal
+                    backgroundColor: gradient,
+                    fill: true,               // 👈 área
+                    tension: 0.45,            // 👈 curva suave
+                    pointRadius: 5,
+                    pointHoverRadius: 7,
+                    pointBackgroundColor: '#6366f1',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2
                 }]
             },
             options: {
+                responsive: true,
                 plugins: {
                     legend: {
-                        position: 'bottom',
-                        labels: {
-                            padding: 15,
-                            boxWidth: 14
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: '#111827',
+                        titleColor: '#fff',
+                        bodyColor: '#e5e7eb',
+                        padding: 12,
+                        cornerRadius: 8
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(0,0,0,0.05)'
+                        },
+                        ticks: {
+                            precision: 0
                         }
                     }
                 }
             }
         });
     </script>
+
+
+
+    <script>
+        const pieCtx = document.getElementById('pieChart');
+
+        const pieLabels = @json(($cobrosPorMetodo ?? collect())->pluck('metodo_pago'));
+        const pieData = @json(($cobrosPorMetodo ?? collect())->pluck('total'));
+
+        // 👇 Si no hay datos, mostramos mensaje
+        if (pieLabels.length === 0) {
+            pieCtx.parentElement.innerHTML = `
+                        <p class="text-center text-muted mt-4">
+                            No hay cobros registrados aún
+                        </p>
+                    `;
+        } else {
+            new Chart(pieCtx, {
+                type: 'pie',
+                data: {
+                    labels: pieLabels.map(p =>
+                        p.charAt(0).toUpperCase() + p.slice(1)
+                    ),
+                    datasets: [{
+                        data: pieData,
+                        backgroundColor: [
+                            '#22c55e', // efectivo
+                            '#3b82f6', // yape
+                            '#06b6d4', // plin
+                            '#a855f7', // tarjeta
+                            '#f59e0b', // transferencia
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    return 'S/ ' + Number(context.raw).toFixed(2);
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+
 @endpush

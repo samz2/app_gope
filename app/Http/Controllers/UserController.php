@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Role;
+use App\Models\Empresa;
+use App\Mail\UsuarioCreadoMail;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\UsuarioCreadoMail;
+
 
 
 class UserController extends Controller
@@ -38,9 +41,10 @@ class UserController extends Controller
     {
         $roles = Role::orderBy('nombre')->get();
         $user = null; // 👈 clave
+        $empresas = Empresa::orderBy('nombre')->get();
 
 
-        return view('admin.usuarios.create', compact('roles', 'user'));
+        return view('admin.usuarios.create', compact('roles', 'user', 'empresas'));
     }
 
     /**
@@ -50,24 +54,22 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
+            'usuario' => 'required|string|max:255|unique:users,usuario',
             'password' => 'required|string|min:6|confirmed',
             'role_id' => 'required|exists:roles,id',
+            'empresa_id' => 'nullable|exists:empresas,id',
         ]);
 
         $plainPassword = $request->password;
 
         $user = User::create([
             'name' => $request->name,
-            'email' => $request->email,
+            'usuario' => $request->usuario,
             'password' => Hash::make($plainPassword),
             'role_id' => $request->role_id,
+            'empresa_id' => $request->empresa_id,
         ]);
 
-        // 📧 Enviar correo
-        \Mail::to($user->email)->send(
-            new UsuarioCreadoMail($user, $plainPassword)
-        );
 
         return redirect()
             ->route('admin.usuarios.index')
@@ -84,8 +86,9 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $roles = Role::orderBy('nombre')->get();
+        $empresas = Empresa::orderBy('nombre')->get();
 
-        return view('admin.usuarios.edit', compact('user', 'roles'));
+        return view('admin.usuarios.edit', compact('user', 'roles', 'empresas'));
     }
 
 
@@ -97,13 +100,14 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $user->id,
+            'usuario' => 'required|string|max:255|unique:users,usuario,' . $user->id,
             'role_id' => 'required|exists:roles,id',
             'password' => 'nullable|min:6',
+            'empresa_id' => 'nullable|exists:empresas,id',
         ]);
 
 
-        $data = $request->only(['name', 'email', 'role_id']);
+        $data = $request->only(['name', 'usuario', 'role_id', 'empresa_id']);
 
         if ($request->filled('password')) {
             $data['password'] = bcrypt($request->password);
